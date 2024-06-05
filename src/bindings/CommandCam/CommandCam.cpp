@@ -353,6 +353,7 @@ int main(int argc, char **argv)
 	fprintf(stderr, "Capture device: %ls\n", var.bstrVal);
 	VariantClear(&var);
 	bool new_camera_bugfix = (wcscmp(var.bstrVal, L"HD USB Camera") == 0);
+	fprintf(stderr, "new_camera_bugfix: %s\n", new_camera_bugfix ? "YES" : "no");
 	if (new_camera_bugfix)
 		snapshot_delay += 1000;
 
@@ -508,6 +509,9 @@ int main(int argc, char **argv)
 		fprintf(stderr, "Capture resolution: %dx%d\n",
 			pVih->bmiHeader.biWidth,
 			pVih->bmiHeader.biHeight);
+
+		fprintf(stderr, "biBitCount: %d\n",
+			pVih->bmiHeader.biBitCount);
 
 		// Create bitmap structure
 		long cbBitmapInfoSize = mt.cbFormat - SIZE_PREHEADER;
